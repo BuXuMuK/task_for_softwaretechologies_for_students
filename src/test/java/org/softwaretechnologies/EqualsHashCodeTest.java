@@ -98,9 +98,11 @@ public class EqualsHashCodeTest {
          * Какие классы содержат верную пару equals hashCode.
          * Невалидным может быть только один из методов.
          * Встатьте нужные выражения assertTrue или assertFalse для переменных a b c d e
-         * Пример:
-         * assertTrue(c);
-         * assertFalse(a);
-         */
+   */
+        assertTrue(a); // A неверно
+        assertFalse(b); // B неверно
+        assertFalse(c);  // C правильно
+        assertFalse(d); // D неверно, так как hashCode зависит от `a`, а equals не учитывает его
+        assertTrue(e);  // E правильно
     }
 }

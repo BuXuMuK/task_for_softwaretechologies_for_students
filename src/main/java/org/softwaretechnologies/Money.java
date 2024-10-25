@@ -19,6 +19,13 @@ public class Money {
         if (!(o instanceof Money)) return false;
         Money other = (Money) o;
 
+        if(other.type != this.type) // Проверка различие типов
+            return false;
+        if(other.amount == null && this.amount == null) // Проверка на null у двух объектов сразу
+            return true;
+
+        if (other.amount == null || this.amount == null) // Если один из amount = null, то  false
+            return false;
 
         BigDecimal thisAmount = (amount == null) ? BigDecimal.ZERO : amount.setScale(4, RoundingMode.HALF_UP);
         BigDecimal otherAmount = (other.amount == null) ? BigDecimal.ZERO : other.amount.setScale(4, RoundingMode.HALF_UP);
