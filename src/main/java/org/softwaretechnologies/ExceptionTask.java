@@ -1,27 +1,27 @@
-package org.softwaretechnologies;;
+package org.softwaretechnologies;
 
 import java.util.Optional;
 
 public class ExceptionTask {
+
     /**
      * Исправьте функцию printMessage не убирая вызов функции throwRuntimeException.
      * Функция printMessage должна выводить на экран сообщение:
-       Вызвана функция printMessage
+     * Вызвана функция printMessage
      */
     public static void printMessage() {
+        System.out.println("Вызвана функция printMessage");
         throwRuntimeException();
-        // TODO: реализуйте вышеуказанную функцию
-
     }
 
     /**
      * Исправьте функцию printMessage2 не убирая вызов функции throwCatchableException.
      * Функция printMessage должна выводить на экран сообщение:
-     Вызвана функция printMessage2
+     * Вызвана функция printMessage2
      */
     public static void printMessage2() throws Exception {
+        System.out.println("Вызвана функция printMessage2");
         throwCatchableException();
-        // TODO: реализуйте вышеуказанную функцию
     }
 
     private static void throwCatchableException() throws Exception {
@@ -40,9 +40,10 @@ public class ExceptionTask {
      * @throws DivideOnNullException если divisor равен 0
      */
     public static int divide(int dividend, int divisor) throws DivideOnNullException {
-
-        // TODO: реализуйте вышеуказанную функцию
-        return dividend/divisor;
+        if (divisor == 0) {
+            throw new DivideOnNullException("Деление на ноль не допускается");
+        }
+        return dividend / divisor;
     }
 
     /**
@@ -52,13 +53,25 @@ public class ExceptionTask {
      * Если обе строки равны null, то должен возвращаться пустой Optional.
      * @param first первая строка
      * @param second вторая строка
-     * @return конкатенацию двух строк: кротчайшую из двух строк с другой строкой.
+     * @return конкатенацию двух строк: кратчайшую из двух строк с другой строкой.
      */
     public static Optional<String> mergeStrings(String first, String second) {
-        // TODO: реализуйте вышеуказанную функцию
-
-
-
+        if (first == null && second == null) {
+            return Optional.empty();
+        }
+        if (first == null) {
+            return Optional.of(second);
+        }
+        if (second == null) {
+            return Optional.of(first);
+        }
         return Optional.of(first.length() > second.length() ? first + second : second + first);
+    }
+
+    // Пример класса исключения
+    public static class DivideOnNullException extends Exception {
+        public DivideOnNullException(String message) {
+            super(message);
+        }
     }
 }
